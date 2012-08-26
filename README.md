@@ -1,5 +1,6 @@
 Usage:
 yml example:
+<pre>
 default:
     context:
     extensions:
@@ -11,7 +12,7 @@ default:
                 password: '1'
                 database: 'behat'
                 port: 3306
-                directory: 'local'
+                <b>directory</b>: 'local'
                 init_command: 'SET NAMES "UTF8"'
           local_service_api:
                 type: 'mysql'
@@ -19,6 +20,6 @@ default:
                 user: 'behat2'
                 password: '1'
                 database: 'behatTwo'
+</pre>
 
-
-directory is relative from %features/bootstrap/database/
+<b>directory</b> is relative from %features/bootstrap/database/
