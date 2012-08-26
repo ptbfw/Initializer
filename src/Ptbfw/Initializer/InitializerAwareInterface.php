@@ -5,7 +5,7 @@ namespace Ptbfw\Initializer;
 /**
  * Description of InitializerAwareInterface
  *
- * @author potaka
+ * @author Angel Koilov <angel.koilov@gmail.com>
  */
 interface InitializerAwareInterface {
 	

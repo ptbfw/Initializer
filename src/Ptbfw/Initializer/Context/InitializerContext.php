@@ -3,9 +3,8 @@
 namespace Ptbfw\Initializer\Context;
 
 /**
- * Description of InitializerContext
  *
- * @author potaka
+ * @author Angel Koilov <angel.koilov@gmail.com>
  */
 class InitializerContext extends \Behat\Behat\Context\BehatContext {
 

@@ -55,7 +55,7 @@ class Mysql implements Init {
 		$sqlDirectory = __DIR__ .'/' . $relativeDir . $this->getDirectory();
 
 		if (!is_dir($sqlDirectory)) {
-			throw new \Exception("$sqlDirectory don't exist");
+			throw new \Exception("$sqlDirectory doesn't exist");
 		}
 
 		$finder = new Finder();
