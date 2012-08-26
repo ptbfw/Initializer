@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	<services>
+		<service id="ptbfw.initializer" class="Ptbfw\Initializer\Extension" />
+		<service id="ptbfw.initializer.context.initializer" class="Ptbfw\Initializer\Context\InitializerInitializer">
+			 <argument>%ptbfw.initializer.parameters%</argument>
+			<tag name="behat.context.initializer" />
+		</service>
+
+	</services>
+</container>
