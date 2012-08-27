@@ -10,13 +10,18 @@ use \PDO,
 /**
  * class for MySQL initializtion
  *
- * @author Angel Koilov
+ * @author Angel Koilov <angel.koilov@gmail.com>
  */
 class Mysql implements Init {
 
 	private $directory;
 	private $pdo;
 
+	/**
+	 * 
+	 * @param string $name
+	 * @param array $options
+	 */
 	function __construct($name, $options) {
 
 		if (isset($options['directory'])) {

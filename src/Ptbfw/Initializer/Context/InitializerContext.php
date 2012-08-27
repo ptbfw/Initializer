@@ -2,6 +2,8 @@
 
 namespace Ptbfw\Initializer\Context;
 
+use \Exception;
+
 /**
  *
  * @author Angel Koilov <angel.koilov@gmail.com>
@@ -9,7 +11,7 @@ namespace Ptbfw\Initializer\Context;
 class InitializerContext extends \Behat\Behat\Context\BehatContext {
 
 	private $params;
-	private static $databaseDrivers = array();
+	private $databaseDrivers = array();
 
 	function __construct($params) {
 		$this->params = $params;
@@ -17,13 +19,12 @@ class InitializerContext extends \Behat\Behat\Context\BehatContext {
 
 	/**
 	 * 
-	 * Restore mink sessions from config
 	 * Restart database
 	 * 
 	 * @BeforeScenario 
 	 * @param \Behat\Behat\Event\ScenarioEvent $event
 	 */
-	public function before($event) {
+	public function beforeScenarioHook($event) {
 		$drivers = array();
 
 		$options = $this->params;
@@ -39,19 +40,15 @@ class InitializerContext extends \Behat\Behat\Context\BehatContext {
 				}
 				$drivers[$service] = new $driverName($service, $ServiceOptions);
 			}
-			self::$databaseDrivers = $drivers;
+			$this->databaseDrivers = $drivers;
 		}
 
 
 		$this->databaseReset();
 	}
 
-	public function getDatabaseDrivers() {
-		return self::$databaseDrivers;
-	}
-
 	public function databaseReset() {
-		foreach ($this->getDatabaseDrivers() as $d) {
+		foreach ($this->databaseDrivers as $d) {
 			$d->reset();
 		}
 	}
