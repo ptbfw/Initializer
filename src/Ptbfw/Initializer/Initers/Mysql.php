@@ -56,8 +56,13 @@ class Mysql implements Init {
 	}
 
 	public function reset() {
-		$relativeDir = '../../../../../../../features/bootstrap/database/';
-		$sqlDirectory = __DIR__ .'/' . $relativeDir . $this->getDirectory();
+		// add full path only for relative dirs
+		if (!preg_match('~^/~', $this->getDirectory())) {
+			$relativeDir = '../../../../../../../features/bootstrap/database/';
+			$sqlDirectory = __DIR__ . '/' . $relativeDir . $this->getDirectory();
+		} else {
+			$sqlDirectory = $this->getDirectory();
+		}
 
 		if (!is_dir($sqlDirectory)) {
 			throw new \Exception("$sqlDirectory doesn't exist");

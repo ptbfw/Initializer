@@ -22,4 +22,5 @@ default:
                 database: 'behatTwo'
 </pre>
 
-<b>directory</b> is relative from %features/bootstrap/database/
+<b>directory</b> is relative from %features/bootstrap/database/<br>
+if <b>directory</b> start with slash / then path is treated as absolute
