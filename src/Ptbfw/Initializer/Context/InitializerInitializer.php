@@ -13,7 +13,11 @@ class InitializerInitializer implements InitializerInterface {
 
 	private $parameters;
 
-	function __construct(array $params) {
+	/**
+	 * 
+	 * @param array $params
+	 */
+	public function __construct(array $params) {
 		$this->parameters = $params;
 	}
 
@@ -31,6 +35,10 @@ class InitializerInitializer implements InitializerInterface {
 		}
 	}
 
+	/**
+	 * 
+	 * @param \Behat\Behat\Context\ContextInterface $context
+	 */
 	public function initialize(ContextInterface $context) {
 		/* @var $context \Behat\Behat\Context\BehatContext */
 		$context->useContext('ptbfw\\Initializer\\Context\\Initializer', new \Ptbfw\Initializer\Context\InitializerContext($this->parameters));

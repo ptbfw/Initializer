@@ -19,16 +19,11 @@ class Mysql implements Init {
 
 	/**
 	 * 
-	 * @param string $name
 	 * @param array $options
 	 */
-	function __construct($name, $options) {
+	function __construct($options) {
 
-		if (isset($options['directory'])) {
-			$this->directory = $options['directory'];
-		} else {
-			$this->directory = $name;
-		}
+		$this->directory = $options['directory'];
 
 		$username = $options['user'];
 		$password = $options['password'];

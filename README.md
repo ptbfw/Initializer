@@ -20,7 +20,10 @@ default:
                 user: 'behat2'
                 password: '1'
                 database: 'behatTwo'
+                <b>directory</b>: 'local_service_api'
 </pre>
 
 <b>directory</b> is relative from %features/bootstrap/database/<br>
 if <b>directory</b> start with slash / then path is treated as absolute
+
+Development version 0.2

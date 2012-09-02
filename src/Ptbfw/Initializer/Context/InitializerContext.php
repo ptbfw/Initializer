@@ -38,7 +38,7 @@ class InitializerContext extends \Behat\Behat\Context\BehatContext {
 				if (array_key_exists($service, $drivers)) {
 					throw new Exception("driver {$service} already registered");
 				}
-				$drivers[$service] = new $driverName($service, $ServiceOptions);
+				$drivers[$service] = new $driverName($ServiceOptions);
 			}
 			$this->databaseDrivers = $drivers;
 		}
