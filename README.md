@@ -1,3 +1,22 @@
+New Initializer: Executer
+Usage:
+
+<pre>
+default:
+    extensions:
+      Ptbfw\Initializer\Extension:
+          test:
+            type: 'Executer'
+            commands:
+              - "ls"
+              - "whoami"
+</pre>
+
+<b>ls</b> and <b>whoami</b> are command witch are executed before every scenario.
+You can use this for apache restart, moving files, clearing cache etc...
+
+Development version 0.2
+
 Usage:
 yml example:
 <pre>
