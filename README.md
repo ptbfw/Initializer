@@ -15,7 +15,9 @@ default:
 <b>ls</b> and <b>whoami</b> are command witch are executed before every scenario.
 You can use this for apache restart, moving files, clearing cache etc...
 
-Development version 0.2
+Development version 0.3
+
+<hr>
 
 Usage:
 yml example:
