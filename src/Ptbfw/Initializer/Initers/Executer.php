@@ -20,8 +20,8 @@ class Executer implements Init {
 		if (is_string($options)) {
 			$this->commands = array($options);
 		} elseif (is_array($options)) {
-			foreach ($options as $options) {
-				$this->commands[] = (string) $options;
+			foreach ($options as $option) {
+				$this->commands[] = (string) $option;
 			}
 		} else {
 			throw new \Exception('unsupported type for ' . __CLASS__);
