@@ -17,10 +17,10 @@ class Executer implements Init {
 			throw new \Exception('shell_exec not found in php function');
 		}
 
-		if (is_string($options)) {
+		if (is_string($options['commands'])) {
 			$this->commands = array($options);
 		} elseif (is_array($options)) {
-			foreach ($options as $option) {
+			foreach ($options['commands'] as $option) {
 				$this->commands[] = (string) $option;
 			}
 		} else {
