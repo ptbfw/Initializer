@@ -31,7 +31,7 @@ class InitializerContext extends \Behat\Behat\Context\BehatContext {
 
 		if (!empty($options)) {
 			foreach ($options as $service => $ServiceOptions) {
-				// add namespace only for ptbf components
+				// add namespace only for ptbfw components
 				if (!preg_match('/\\\\/', $ServiceOptions['type'])) {
 					$driverName = 'Ptbfw\\Initializer\\Initers\\' . ucfirst($ServiceOptions['type']);
 				}
