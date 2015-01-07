@@ -3,7 +3,7 @@
 namespace Ptbfw\Initializer\Initers;
 
 use \PDO,
-	\Symfony\Component\Finder\Finder
+    \Symfony\Component\Finder\Finder
 
 ;
 
@@ -12,82 +12,75 @@ use \PDO,
  *
  * @author Angel Koilov <angel.koilov@gmail.com>
  */
-class Mysql implements Init {
+class Mysql implements Init
+{
 
-	private $directory;
-	private $pdo;
+    private $directory;
+    private $user;
+    private $pass;
+    private $host;
+    private $database;
+    private $port;
 
-	/**
-	 * 
-	 * @param array $options
-	 */
-	function __construct($options) {
+    /**
+     * 
+     * @param array $options
+     */
+    function __construct($options)
+    {
 
-		$this->directory = $options['directory'];
+        $this->directory = $options['directory'];
 
-		$username = $options['user'];
-		$password = $options['password'];
-		$host = $options['host'];
-		$database = $options['database'];
+        $this->user = $options['user'];
+        $this->pass = $options['password'];
+        $this->host = $options['host'];
+        $this->database = $options['database'];
 
-		if (isset($options['port'])) {
-			$port = ';port=' . $options['port'];
-		} else {
-			$port = '';
-		}
+        if (isset($options['port'])) {
+            throw new \Exception('port config not implemented');
+        }
+    }
 
-		$dsn = 'mysql:dbname=' . $database . ';host=' . $host . $port;
+    public function reset()
+    {
+        // add full path only for relative dirs
+        if (!preg_match('~^/~', $this->getDirectory())) {
+            $relativeDir = '../../../../../../../features/bootstrap/database/';
+            $sqlDirectory = __DIR__ . '/' . $relativeDir . $this->getDirectory();
+        } else {
+            $sqlDirectory = $this->getDirectory();
+        }
 
-		$pdoOptions = array(
-			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-		);
-		if (isset($options['init_command'])) {
-			$pdoOptions[PDO::MYSQL_ATTR_INIT_COMMAND] = $options['init_command'];
-		}
+        if (!is_dir($sqlDirectory)) {
+            throw new \Exception("$sqlDirectory doesn't exist");
+        }
 
+        $finder = new Finder();
+        $sqlCode = '';
+        foreach ($finder->files()->name('*.sql')->sortByName()->in($sqlDirectory) as $file) {
+            /* @var $file \Symfony\Component\Finder\SplFileInfo */
+            $sqlCode .= file_get_contents($file->getRealPath());
+            $c = "mysql -h{$this->host} -u{$this->user} -p{$this->pass} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
+            $output = null;
+            exec($c, $output);
+            if (!empty($output)) {
+                throw new \Exception(print_r($output, true));
+            }
+        }
 
-		$pdo = new PDO($dsn, $username, $password, $pdoOptions);
-		$this->pdo = $pdo;
-	}
+    }
 
-	public function reset() {
-		// add full path only for relative dirs
-		if (!preg_match('~^/~', $this->getDirectory())) {
-			$relativeDir = '../../../../../../../features/bootstrap/database/';
-			$sqlDirectory = __DIR__ . '/' . $relativeDir . $this->getDirectory();
-		} else {
-			$sqlDirectory = $this->getDirectory();
-		}
+    public function getDirectory()
+    {
+        return $this->directory;
+    }
 
-		if (!is_dir($sqlDirectory)) {
-			throw new \Exception("$sqlDirectory doesn't exist");
-		}
-
-		$finder = new Finder();
-		$sqlCode = '';
-		foreach ($finder->files()->name('*.sql')->sortByName()->in($sqlDirectory) as $file) {
-			/* @var $file \Symfony\Component\Finder\SplFileInfo */
-			$sqlCode .= file_get_contents($file->getRealPath());
-		}
-
-		$sqlCode = trim($sqlCode);
-		if (empty($sqlCode)) {
-			return true;
-		}
-
-		$stm = $this->getPdo()->prepare($sqlCode);
-		$stm->execute();
-	}
-
-	public function getDirectory() {
-		return $this->directory;
-	}
-
-	/**
-	 * @return \PDO
-	 */
-	public function getPdo() {
-		return $this->pdo;
-	}
+    /**
+     * @return \PDO
+     */
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
 
 }
