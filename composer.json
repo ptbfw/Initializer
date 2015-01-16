@@ -14,8 +14,9 @@
         }
     ],
     "require": {
-        "php":                   ">=5.3.0",
-		 "behat/behat":          "*"
+        "php":                  ">=5.4",
+        "behat/behat":          "*",
+        "symfony/finder":       "2.*"
     },
     "autoload": {
         "psr-0": {
