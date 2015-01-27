@@ -56,10 +56,8 @@ class Mysql implements Init
         }
 
         $finder = new Finder();
-        $sqlCode = '';
         foreach ($finder->files()->name('*.sql')->sortByName()->in($sqlDirectory) as $file) {
             /* @var $file \Symfony\Component\Finder\SplFileInfo */
-            $sqlCode .= file_get_contents($file->getRealPath());
             $c = "mysql -h{$this->host} -u{$this->user} -p{$this->pass} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
             $output = null;
             exec($c, $output);
