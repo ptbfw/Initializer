@@ -50,7 +50,7 @@ class Extension implements ExtensionInterface
                                 ->end()
                                 ->scalarNode('init_command')
                                 ->end()
-                                ->scalarNode('directory')
+                                ->variableNode('directories')
                                 ->end()
                             ->end()
                         ->end()

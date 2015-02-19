@@ -15,7 +15,7 @@ use \PDO,
 class Mysql implements Init
 {
 
-    private $directory;
+    private $directories;
     private $user;
     private $pass;
     private $host;
@@ -29,7 +29,7 @@ class Mysql implements Init
     function __construct($options)
     {
 
-        $this->directory = $options['directory'];
+        $this->directories = $options['directories'];
 
         $this->user = $options['user'];
         $this->pass = $options['password'];
@@ -44,33 +44,36 @@ class Mysql implements Init
     public function reset()
     {
         // add full path only for relative dirs
-        if (!preg_match('~^/~', $this->getDirectory())) {
-            $relativeDir = '../../../../../../../features/bootstrap/database/';
-            $sqlDirectory = __DIR__ . '/' . $relativeDir . $this->getDirectory();
-        } else {
-            $sqlDirectory = $this->getDirectory();
-        }
+        
+        foreach ($this->getDirectories() as $directory) {
+            if (!preg_match('~^/~', $directory)) {
+                $relativeDir = '../../../../../../../features/bootstrap/database/';
+                $sqlDirectory = __DIR__ . '/' . $relativeDir . $directory;
+            } else {
+                $sqlDirectory = $directory;
+            }
 
-        if (!is_dir($sqlDirectory)) {
-            throw new \Exception("$sqlDirectory doesn't exist");
-        }
+            if (!is_dir($sqlDirectory)) {
+                throw new \Exception("$sqlDirectory doesn't exist");
+            }
 
-        $finder = new Finder();
-        foreach ($finder->files()->name('*.sql')->sortByName()->in($sqlDirectory) as $file) {
-            /* @var $file \Symfony\Component\Finder\SplFileInfo */
-            $c = "mysql -h{$this->host} -u{$this->user} -p{$this->pass} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
-            $output = null;
-            exec($c, $output);
-            if (!empty($output)) {
-                throw new \Exception(print_r($output, true));
+            $finder = new Finder();
+            foreach ($finder->files()->name('*.sql')->sortByName()->in($sqlDirectory) as $file) {
+                /* @var $file \Symfony\Component\Finder\SplFileInfo */
+                $c = "mysql -h{$this->host} -u{$this->user} -p{$this->pass} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
+                $output = null;
+                exec($c, $output);
+                if (!empty($output)) {
+                    throw new \Exception(print_r($output, true));
+                }
             }
         }
 
     }
 
-    public function getDirectory()
+    public function getDirectories()
     {
-        return $this->directory;
+        return $this->directories;
     }
 
     /**
