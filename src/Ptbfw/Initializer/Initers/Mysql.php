@@ -30,7 +30,15 @@ class Mysql implements Init
     {
 
         $this->directories = $options['directories'];
-
+        
+        if (!empty($options['directory'])) {
+            $this->directories[] = $options['directory'];
+        }
+        
+        if (empty($this->directories)) {
+            throw new \Exception('directory/ies must be set');
+        }
+        
         $this->user = $options['user'];
         $this->pass = $options['password'];
         $this->host = $options['host'];
