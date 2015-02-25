@@ -8,8 +8,8 @@ default:
       Ptbfw\Initializer\Extension:
             resetters:
                 {servicename}:
-                  type: {executer type}
-                  {executer Options}
+                    type: {executer type}
+                    {executer Options}
                 {SecondServiceName}:
                     type: {executer type}
                     {executer Options}
@@ -42,12 +42,19 @@ default:
                 user: 'behat2'
                 password: '1'
                 database: 'behatTwo'
-                <b>directory</b>: 'local_service_api'
+                <b>directories</b>:
+                    - 'local_service_api'
+                    - 'local_service'
 </pre>
 
-<b>directory</b> is relative from %features/bootstrap/database/<br>
+<h2>Types</h2>
+
+<h3>Mysql</h3>
+<b>directory(ies)</b> is relative from %features%/bootstrap/database/<br>
 If <b>directory</b> start with slash / then path is treated as absolute.
 </pre>
+If both <b>directory</b> and <b>directories</b> are provided, <b>directory</b> is merged in <b>directories</b>
 
+<h3>Executer</h3>
 <b>ls</b> and <b>whoami</b> are command witch are executed before every scenario.
 You can use this for apache restart, moving files, clearing cache etc...
