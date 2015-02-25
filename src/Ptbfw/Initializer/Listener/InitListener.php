@@ -77,7 +77,9 @@ class InitListener implements EventSubscriberInterface
         // this should be used!
     }
 
-    
+    // Used for OutlineScenarious
+    // Check if current step is the 1st one from scenario
+    // If it is, then do init()
     public function beforeStep(\Behat\Behat\EventDispatcher\Event\BeforeStepTested $event)
     {
         $currentStep = $event->getStep();
