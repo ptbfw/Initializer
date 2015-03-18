@@ -1,5 +1,7 @@
 Compatible with behat v3
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/89d83982-c16c-47df-8f3c-1b40d6621a64/big.png)](https://insight.sensiolabs.com/projects/89d83982-c16c-47df-8f3c-1b40d6621a64)
+
 Usage:
 
 <pre>
