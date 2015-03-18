@@ -36,7 +36,7 @@ class InitListener implements EventSubscriberInterface
                 $driverName = 'Ptbfw\\Initializer\\Initers\\' . ucfirst($ServiceOptions['type']);
             }
             if (array_key_exists($service, $drivers)) {
-                throw new Exception("driver {$service} already registered");
+                throw new \Exception("driver {$service} already registered");
             }
             $drivers[$service] = new $driverName($ServiceOptions);
         }
