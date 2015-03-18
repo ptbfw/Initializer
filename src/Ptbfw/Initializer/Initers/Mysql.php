@@ -17,7 +17,7 @@ class Mysql implements Init
     private $pass;
     private $host;
     private $database;
-    private $port;
+    private $port = 3306;
 
     /**
      * 
@@ -42,7 +42,7 @@ class Mysql implements Init
         $this->database = $options['database'];
 
         if (isset($options['port'])) {
-            throw new \Exception('port config not implemented');
+            $this->port = $options['port'];
         }
     }
 
@@ -65,7 +65,7 @@ class Mysql implements Init
             $finder = new Finder();
             foreach ($finder->files()->name('*.sql')->sortByName()->in($sqlDirectory) as $file) {
                 /* @var $file \Symfony\Component\Finder\SplFileInfo */
-                $c = "mysql -h{$this->host} -u{$this->user} -p{$this->pass} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
+                $c = "mysql -h{$this->host} -u{$this->user} -p{$this->pass} -P{$this->port} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
                 $output = null;
                 exec($c, $output);
                 if (!empty($output)) {
