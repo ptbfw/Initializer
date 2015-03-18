@@ -59,4 +59,4 @@ If both <b>directory</b> and <b>directories</b> are provided, <b>directory</b> i
 
 <h3>Executer</h3>
 <b>ls</b> and <b>whoami</b> are command witch are executed before every scenario.
-You can use this for apache restart, moving files, clearing cache etc...
+You can use this for apache restart, moving files, clearing cache etc.

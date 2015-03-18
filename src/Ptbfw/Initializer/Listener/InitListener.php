@@ -2,17 +2,10 @@
 
 namespace Ptbfw\Initializer\Listener;
 
-use Behat\Behat\EventDispatcher\Event\ExampleTested;
-use Behat\Behat\EventDispatcher\Event\ScenarioLikeTested;
 use Behat\Behat\EventDispatcher\Event\ScenarioTested;
 use Behat\Behat\EventDispatcher\Event\OutlineTested;
 use Behat\Mink\Mink;
-use Behat\Testwork\EventDispatcher\Event\ExerciseCompleted;
-use Behat\Testwork\ServiceContainer\Exception\ProcessingException;
-use Behat\Testwork\Suite\Exception\SuiteConfigurationException;
-use Behat\Testwork\Suite\Suite;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\EventDispatcher\Event;
 use Behat\Gherkin\Node\OutlineNode;
 
 /**

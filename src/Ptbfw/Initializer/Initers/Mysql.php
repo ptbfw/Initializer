@@ -2,10 +2,7 @@
 
 namespace Ptbfw\Initializer\Initers;
 
-use \PDO,
-    \Symfony\Component\Finder\Finder
-
-;
+use \Symfony\Component\Finder\Finder;
 
 /**
  * class for MySQL initializtion
@@ -82,14 +79,6 @@ class Mysql implements Init
     public function getDirectories()
     {
         return $this->directories;
-    }
-
-    /**
-     * @return \PDO
-     */
-    public function getPdo()
-    {
-        return $this->pdo;
     }
 
 }

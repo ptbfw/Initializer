@@ -26,7 +26,7 @@ class Memcached implements Init {
 				$host = 'localhost';
 			}
 			$result = $this->memchached->addServer($host, $port);
-			if ($result == false) {
+			if ($result === false) {
 				throw new \Exception("cant add memchache server");
 			}
 		}
@@ -34,7 +34,7 @@ class Memcached implements Init {
 
 	public function reset() {
 		$result = $this->memchached->flush();
-		if ($result == false) {
+		if ($result === false) {
 			throw new \Exception('memchache clear failed');
 		}
 	}
