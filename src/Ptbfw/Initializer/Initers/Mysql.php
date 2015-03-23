@@ -9,7 +9,7 @@ use \Symfony\Component\Finder\Finder;
  *
  * @author Angel Koilov <angel.koilov@gmail.com>
  */
-class Mysql implements Init
+class Mysql implements InitializerInterface
 {
 
     private $directories;

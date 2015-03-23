@@ -7,7 +7,7 @@ namespace Ptbfw\Initializer\Initers;
  *
  * @author Angel Koilov <angel.koilov@gmail.com>
  */
-class Executer implements Init {
+class Executer implements InitializerInterface {
 
 	private $commands;
 

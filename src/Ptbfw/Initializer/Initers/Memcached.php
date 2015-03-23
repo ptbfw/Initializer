@@ -7,7 +7,7 @@ namespace Ptbfw\Initializer\Initers;
  *
  * @author Angel Koilov <angel.koilov@gmail.com>
  */
-class Memcached implements Init {
+class Memcached implements InitializerInterface {
 
 	private $memchached;
 

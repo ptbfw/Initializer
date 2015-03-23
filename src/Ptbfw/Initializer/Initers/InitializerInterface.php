@@ -6,7 +6,7 @@ namespace Ptbfw\Initializer\Initers;
  * 
  * @author Angel Koilov <angel.koilov@gmail.com>
  */
-interface Init {
+interface InitializerInterface {
 
 	/**
 	 * 
