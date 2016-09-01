@@ -3,8 +3,7 @@ Compatible with behat v3
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/89d83982-c16c-47df-8f3c-1b40d6621a64/big.png)](https://insight.sensiolabs.com/projects/89d83982-c16c-47df-8f3c-1b40d6621a64)
 
 Usage:
-
-<pre>
+```
 default:
     extensions:
       Ptbfw\Initializer\Extension:
@@ -15,11 +14,11 @@ default:
                 {SecondServiceName}:
                     type: {executer type}
                     {executer Options}
-</pre>
+```
 
-Example:
+Example behat.yml config:
 
-<pre>
+```
 default:
     extensions:
       Ptbfw\Initializer\Extension:
@@ -47,13 +46,13 @@ default:
                 <b>directories</b>:
                     - 'local_service_api'
                     - 'local_service'
-</pre>
+```
 
 <h2>Types</h2>
 
 <h3>Mysql</h3>
 <b>directory(ies)</b> is relative from %features%/bootstrap/database/<br>
-If <b>directory</b> start with slash / then path is treated as absolute.
+If <b>directory</b> start with `/` then path is treated as absolute.
 </pre>
 If both <b>directory</b> and <b>directories</b> are provided, <b>directory</b> is merged in <b>directories</b>
 
