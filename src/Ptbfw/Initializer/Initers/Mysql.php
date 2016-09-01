@@ -65,7 +65,7 @@ class Mysql implements InitializerInterface
             $finder = new Finder();
             foreach ($finder->files()->name('*.sql')->sortByName()->in($sqlDirectory) as $file) {
                 /* @var $file \Symfony\Component\Finder\SplFileInfo */
-                $c = "mysql -h{$this->host} -u{$this->user} -p{$this->pass} -P{$this->port} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
+                $c = "mysql -h{$this->host} --user='{$this->user}' --password='{$this->pass}' -P{$this->port} {$this->database} < {$file->getRealPath()}" . PHP_EOL;
                 $output = null;
                 exec($c, $output);
                 if (!empty($output)) {
